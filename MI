@@ -52,225 +52,149 @@ function getStyle(obj,attr,type){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//<3> 运动
+function doMove(obj,dir,step,end,endFn){
+	        step = getStyle(obj,dir,'number')<end ? step : -step;
+	        clearInterval(obj.timer);
+	        obj.timer = setInterval(function (){
+		            var speed = getStyle(obj,dir,'number') + step;
+		            if (speed>end&&step>0||speed<end&&step<0) {
+			                     speed = end;
+		             }
+		       obj.style[dir] = speed + 'px';
+		            if (speed==end) {
+			                     clearInterval(obj.timer);
+			                     endFn && endFn();
+		            }
+	      },30)
+}
+
+//<4> 抖动
+function shake(obj,dir,endFn){
+        if (obj.onOff) {return;}
+        obj.onOff = true;
+        var pos = getStyle(obj,dir,'number');
+        var freq = [];
+        var num = 0;
+        for (i=20; i>0; i-=4) {
+                 freq.push(i,-i);
+        }
+        freq.push(0);
+        clearInterval(obj.shakeOne);
+        obj.shakeOne = setInterval(function (){
+                 obj.style[dir] = pos + freq[num] + 'px';
+                 num ++;
+                 if (num==freq.length) { 
+                          clearInterval(obj.shakeOne);
+                          endFn && endFn();
+                          obj.onOff = false;
+                 }
+        },40);
+}
+
+//<5> 透明度变化
+function opacity(obj,step,end,endFn){
+	        step = parseInt(getStyle(obj,'opacity','string')*100)>end ? -step : step;
+	        clearInterval(obj.opacity);
+	        obj.opacity = setInterval(function (){
+		                var speed = parseInt(getStyle(obj,'opacity','string')*100) + step;
+                  if (speed>end&&step>0||speed<end&&step<0) {
+			                        speed = end;
+		                }
+		                obj.style.opacity = speed/100;
+		                obj.style.filter = 'alpha(opacity:'+speed+')';
+		                if (speed==end) {
+			                         clearInterval(obj.opacity);
+			                         endFn && endFn();
+		                }
+	        },80)
+}
+
+//<6> 数组极值(最大值&最小值)
+function extramum(arr,ext){
+	          max = min = arr[0];
+	          for (var i=0; i<arr.length; i++) {
+		                  if (max<arr[i]) max = arr[i];
+		                  if (min>arr[i]) min = arr[i];
+	          }
+	          switch (ext) {
+		                 case 'max': return max;
+		                 case 'min': return min;
+	          }
+}
+
+//<7> 去重复
+function overKill(obj){
+	        if (typeof obj==='string') {
+		                obj = obj.split('');
+		                kill(obj);
+		                obj = obj.join('');
+	        } else {
+		                kill(obj);
+        	}
+	       function kill(obj){
+		              for (var i=0; i<obj.length; i++) {
+			                 for (var j=i+1; j<obj.length; j++) {
+				                    if (obj[i]===obj[j]) {
+					                       obj.splice(j,1);
+					                           j --;
+				                    }
+			                 }
+		             }
+	      }
+	      return obj;
+}
+
+//<8> 随机整数
+function randomInt(x,y){
+	       return Math.round(Math.random()*(y-x>0 ? y-x : x-y)+(y-x>0 ? x : y));
+}
+
+//<9> 查找元素(或任意子字符串)在数组中的位数
+function arrIndexOf(arr,elt,loc){
+	       var newArr = arr.slice(typeof loc==='undefined'?0:loc);
+	       var newStr = newArr.join(',').slice(0,newArr.join(',').indexOf(elt)+elt.length);
+	       return newArr.join(',').indexOf(elt)===-1 ? -1 : (typeof loc==='undefined'?0:loc)+newStr.split(',').length-1;
+}
+
+//<10> 查找元素(或任意子字符串)个数
+function search(obj,cont){
+	        var num = 0;
+	        if (typeof obj==='string') {
+		                var loc = 0;
+		                for (var i=0; i<obj.length; i++) {
+			                        if (obj.indexOf(cont,loc)!==-1) {
+				                               loc = obj.indexOf(cont,loc)+1;
+				                               num ++;
+			                        }
+		                }
+	         } else {
+		               for (var i=0; i<arr.length; i++) {
+			                        if (arr[i]===cont) num++;
+		                }
+	           }
+          	return num;
+}
+
+//<11> 非严格模式的类json字符串转换成严格模式的类json字符串
+function jsonify(str){	
+       //以下方法只能转换一层json
+      //	var aJson = str.replace(/:/g,',').match(/(\w+-?)+/g);
+      //	var newStr = '';
+      //	for (var i=0; i<aJson.length; i+=2) {
+      //		for (var j=0; j<2; j++) {
+      //			if (j==0) {
+      //				newStr += '"'+aJson[i+j]+'"'+':';
+      //			} else {
+      //				newStr += '"'+aJson[i+j]+'"'+',';
+      //			}
+      //		}
+      //	}
+      //	return '{'+newStr.replace(/,$/,'')+'}';
+	return str.replace(/'|"|\s/g,'').replace(/(\w+-?)+/g,function ($0){
+				return '"'+$0+'"';
+	})
+}
 
 
 
