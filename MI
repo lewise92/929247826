@@ -25,7 +25,242 @@
  */              
       
   
-//<1> 基础功能
+//1、 基础功能
+
+function $(){
+       if(typeof arguments[0]==='function'){ //html加载完成后执行js
+                 window.onload=arguments[0];
+        }else if (typeof arguments[0]==='string'){//根据不同选择符获取元素{规则：父级元素，元素名称 如果不填父级元素，视父级为document 
+             switch(arguments[0].charAt(0)){
+                 case '#':return(argument[1]||document).getElementById(argument[0].replace('#',''));break;
+                 //根据元素ID获取
+                 case '@':return(argument[1]||document).getElementsByTagName(arguments[0].replace('@',''));break;
+                 //根据元素标签名获取
+             }
+       }
+}
+
+
+//2、获取元素属性值（1、不能获取复合属性 2、不能获取未设置属性 3、不能获取前后含有空格的属性）；
+function getStyle(obj,attr,type){
+       if(type==='number'){
+           return obj.currentStyle ? parseInt(obj.currentStyle[attr]) ： parseInt(getComputedStyle(obj, null)[attr]);
+       }else if(type==='string'){
+           return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, null)[attr];
+       }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
