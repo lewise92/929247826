@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,8 +20,8 @@
 					
 				}
 				
-        //
-				function count(){
+       				//程序 				
+                                function count(){
 					var tnum=0;
 					var tprice=0;
 					var max=0;
@@ -56,8 +48,9 @@
 					oP.innerHTML='商品合计共：'+tnum+'件;共花费:'+tprice+'元;其中最贵的商品单价是：'+max+'元';
 				}
 				
-				//主程序：计算				
-          function fn(oLi){
+				
+			//主程序：计算				
+          		function fn(oLi){
 					
 					var oBtn=oLi.getElementsByTagName('input');
 					var oEm=oLi.getElementsByTagName('em')[0];
