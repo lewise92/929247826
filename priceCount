@@ -1,0 +1,173 @@
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>函数传参练习</title>
+		<script>
+			window.onload=function(){
+				var oUl=document.getElementById('ul');
+				var aLi=oUl.getElementsByTagName('li');
+				var oP=document.getElementById('count');
+				var aStrong=oUl.getElementsByTagName('strong');
+				var aEm=oUl.getElementsByTagName('em');
+				var aspan=oUl.getElementsByTagName('em');
+				var arr=[];
+				
+				//利用函数传参；
+				for(var i=0; i<aLi.length; i++){
+				
+					fn(aLi[i]);
+					
+				}
+				
+        //
+				function count(){
+					var tnum=0;
+					var tprice=0;
+					var max=0;
+					
+					
+					for(var i=0;i<aStrong.length; i++){
+					     tnum += Number(aStrong[i].innerHTML);
+					     tprice += parseFloat(aspan[i].innerHTML);
+					}
+					
+					for(var i=0;i<aStrong.length; i++){
+						arr.push(0);
+						if(aStrong[i].innerHTML==0){
+							arr[i]=0;
+						}else{
+							arr[i]=parseFloat(aEm[i].innerHTML);
+							if(max<arr[i]){
+								max=arr[i];
+							}
+						}
+						
+					}
+					
+					oP.innerHTML='商品合计共：'+tnum+'件;共花费:'+tprice+'元;其中最贵的商品单价是：'+max+'元';
+				}
+				
+				//主程序：计算				
+          function fn(oLi){
+					
+					var oBtn=oLi.getElementsByTagName('input');
+					var oEm=oLi.getElementsByTagName('em')[0];
+					var oSpan=oLi.getElementsByTagName('span')[0];
+					var oStrong=oLi.getElementsByTagName('strong')[0];
+					var num1=Number(oStrong.innerHTML);
+					var num2=parseFloat(oEm.innerHTML);
+					
+					
+					oBtn[0].onclick=function(){
+						num1 --;
+						if(num1 < 0){
+							num1 = 0;
+						}
+						oStrong.innerHTML = num1 ;
+						oSpan.innerHTML = num1*num2 + '元';
+						count();
+					}
+					oBtn[1].onclick=function(){
+						num1 ++;
+						oStrong.innerHTML = num1 ;
+						oSpan.innerHTML = num1*num2 + '元';
+						count();
+					}
+					
+					
+					
+				}
+			
+				
+			
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="ul">
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>12.5元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>10.5元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>23.5元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>9.5元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>15元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>20.5元</em>
+				小计：<span>0元</span>
+			</li>
+		</ul>
+		<p id="count">商品合计共：0件;共花费:0元;其中最贵的商品单价是：0元</p>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
