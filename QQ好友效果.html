@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+ul , h2 { padding:0; margin:0; }
+li { list-style:none; }
+#list { width:240px; border:1px solid #333; margin:0 auto; }
+#list .lis {}
+#list h2 { height:30px; line-height:30px; text-indent:20px; background:url(images/icon1.png) no-repeat 5px center #6FF; color:#000; }
+#list .active { background:url(images/icon25.png) no-repeat 5px center #FF9; color:#000; }
+#list ul { display:none; }
+#list ul li { line-height:24px; border-bottom:1px solid #333; text-indent:24px; }
+#list ul .hover { background:#6FF; }
+</style>
+<script>
+window.onload=function(){
+	var oUl=document.getElementById('list');
+	var oH=document.getElementsByTagName('h2');
+	var oUU=oUl.getElementsByTagName('ul');
+	var arr=[];
+	var oLi=null;
+	
+	//ul的点击事件
+	for(var i=0;i<oH.length;i++){
+		 
+		 oH[i].index=i;
+		 
+		 oH[i].onclick=function(){
+			 
+			 for(var i=0;i<oH.length;i++){
+				 if(i !==this.index ){
+				
+					oUU[i].style.display="none";
+					oH[i].className="";
+				
+				 }
+			 }
+			 
+			 
+			if(this.className==''){
+				
+					oUU[this.index].style.display='block';
+					this.className="active";
+
+				} else{
+					
+					oUU[this.index].style.display='none';
+					this.className='';
+
+			}
+			 
+		}
+		
+		
+	}
+	//ul中的li的点击事件
+	for(var i=0; i<oUU.length; i++){
+		oLi=oUU[i].getElementsByTagName('li');
+		
+		for(var j=0;j<oLi.length;j++){
+			
+			arr.push(oLi[j]);
+			
+			}
+		
+		
+		}
+		
+	for(var i=0; i<arr.length; i++){
+		
+		arr[i].onclick=function(){
+			
+			for(var i=0; i<arr.length; i++){
+			if (arr[i] !=this){
+				
+				 	arr[i].className='';
+				}
+			}
+				
+			if(this.className==''){
+				
+				this.className='hover';
+				
+				
+				}else{
+					
+					this.className='';
+					
+					}
+			
+			}
+		
+		}	
+	
+	
+}
+	
+	
+	
+	
+
+
+
+
+
+
+</script>
+
+</head>
+
+<body>
+<ul id="list">
+	<li class="lis">
+  	<h2>我的好友</h2>
+    <ul>
+    	<li>张三</li>
+    	<li>张三</li>
+    	<li>张三</li>
+    	<li>张三</li>
+    </ul>
+  </li>
+	<li class="lis">
+  	<h2>企业好友</h2>
+    <ul>
+    	<li>李四</li>
+    	<li>李四</li>
+    	<li>李四</li>
+    	<li>李四</li>
+    	<li>李四</li>
+    </ul>
+  </li>
+	<li class="lis">
+  	<h2>黑名单</h2>
+    <ul>
+    	<li>张小三</li>
+    	<li>李小四</li>
+    </ul>
+  </li>
+</ul>
+
+</body>
+</html>
