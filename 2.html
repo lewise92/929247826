@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		#div1{ width: 600px; height: 600px; background-color:#FF7700; border: 3px solid #000000; margin-left: 600px; opacity:1; filter: alpha(opacity=100);}
+			
+		</style>
+		<script src="codefine.js" ></script>
+		<script>
+			window.onload=function(){
+				var oDiv1=document.getElementById('div1');
+				var timer=null;
+				var num=0;
+				
+				/*oDiv1.onclick=function(){
+					
+					clearInterval(timer);
+					
+					timer=setInterval(function(){
+						
+						var speed=parseFloat(getStyle(oDiv1,'opacity','string'))*100-5;
+						
+						if(speed<0){
+							
+							speed=0;
+							
+						}
+						
+						oDiv1.style.opacity=speed/100;
+						
+						if (speed==0){
+							
+							clearInterval(timer);
+						}
+						
+					},100);
+					
+				}*/
+				
+				oDiv1.onclick=function(){
+					
+					opacity(oDiv1,'opacity',5,0.2,function(){
+						opacity(oDiv1,'opacity',5,1);
+					});
+					
+				}
+				
+				function opacity(obj,dir,step,end,endFn){
+					
+					var step=parseFloat(getStyle(oDiv1,dir,'string'))<end? step:-step;
+					
+					clearInterval(obj.timer);
+					
+					obj.timer=setInterval(function(){
+						
+						var speed=parseFloat(getStyle(obj,dir,'string'))*100+step;        //整数；
+						
+						if(speed<end*100&&step<0||speed>end*100&&step>0){
+							
+							speed=end*100;
+							
+						}
+						
+						obj.style[dir]=speed/100;                                          //小数
+						obj.style[dir]='filter: alpha(opacity='+speed+')';					//整数
+						
+						if (speed==end*100){
+							
+							clearInterval(timer);
+							end&&endFn();
+						}
+						
+					},100);
+					
+				}
+				
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+		
+		
+	</body>
+</html>
