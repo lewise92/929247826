@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{margin: 0px; padding: 0px; }
+		#div1{width: 300px; height: 196px; padding: 5px; border: 1px solid #333333; margin: 0 auto; margin-top: 200px;}
+		ul {list-style: none; }
+		ul li {cursor: pointer; display: block; width: 52px; height: 26px; border: 1px solid #CC0000; text-align: center; font-size: 14px; line-height: 26px;}
+		#ul1 { float: left; margin-right: 6px;}
+		#ul2 { float: right;}
+		.active{ background: red; color: white;}
+		</style>
+		<script>
+			window.onload=function(){
+				var oDiv1=document.getElementById('div1');
+				var oImg=document.getElementById('img');
+				var oLi=oDiv1.getElementsByTagName('li');
+				var i=0;
+				var j=0;
+				var num=0; 
+				
+				var arr=["图片区/图片/taobao/1.png","图片区/图片/taobao/2.png","图片区/图片/taobao/3.png","图片区/图片/taobao/4.png","图片区/图片/taobao/5.png","图片区/图片/taobao/6.png","图片区/图片/taobao/7.png","图片区/图片/taobao/8.png","图片区/图片/taobao/9.png","图片区/图片/taobao/10.png","图片区/图片/taobao/11.png","图片区/图片/taobao/12.png","图片区/图片/taobao/13.png","图片区/图片/taobao/14.png"]
+			
+				//定时器程序
+				timer=setInterval(function(){
+					toPlay();
+				},1000);
+				
+			
+					
+				//主程序	
+					for(var i=0; i<oLi.length; i++){
+						oLi[i].index=i;
+						
+						oLi[i].onmouseover=function(){
+							clearInterval(timer);
+							clearAll();
+							oLi[this.index].className='active';
+							oImg.src=arr[this.index];
+						}
+						
+						oLi[i].onmouseout=function(){
+							clearAll();
+							timer=setInterval(function(){
+							toPlay();
+							},1000);
+						
+						}
+						
+					}
+				
+				
+				
+				
+				
+				//幻灯片
+				function toPlay(){
+					clearAll();
+					
+					oLi[num].className='active';
+					oImg.src=arr[num];
+					
+					if(num<oLi.length/2){                        //循环效果
+						num++;
+						if(num==oLi.length/2){
+							num=oLi.length-1;
+						}
+					}else{
+						num--;
+						if(num==oLi.length/2-1){
+							num=0;
+						}
+						
+					}
+					
+					
+				}
+				//清除active
+				function clearAll(){
+					for(var i=0; i<oLi.length; i++){
+						oLi[i].className='';
+					}
+					
+				}
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<ul id="ul1">
+				<li>连衣裙</li>
+				<li>雪纺</li>
+				<li>T恤</li>
+				<li>铅笔裤</li>
+				<li>婚纱</li>
+				<li>外套</li>
+				<li>连体裤</li>
+			</ul>
+			<ul id="ul2">
+				<li>情侣装</li>
+				<li>帆布鞋</li>
+				<li>丝袜</li>
+				<li>太阳镜</li>
+				<li>单鞋</li>
+				<li>凉鞋</li>
+				<li>包包</li>
+			</ul>
+			<img src="图片区/图片/taobao/1.png"alt="" id="img">
+			
+		</div>
+		
+	</body>
+</html>
