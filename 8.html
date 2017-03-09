@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>排序</title>
+		<style>
+				*{
+					margin: 0; 
+					padding: 0;
+				 }
+				.div1 { 
+					margin: 0 auto; 
+					margin-top: 50px; 
+					width: 790px; 
+					height: 400px; 
+					border: 4px solid #CC0000;
+					background: #EE7510;
+					}
+				#ul1{
+					list-style: none;
+					width: 770px;
+					height: 370px;
+					background-color:#FFFACD ;
+					margin: 0 auto;
+					margin-top:4px ;
+				}
+				#div2{
+					margin: 0 auto;
+					width: 120px;
+					height: 20px;
+					background: #FFFACD;
+					
+					
+				}
+				#ul1 li{
+					
+					float: left;
+					position: relative;
+					padding-left: 10px;
+					padding-top: 2px;
+				}
+				#ul1 li span{
+					position: absolute;
+					left: 90px;
+					top: 160px;
+					
+				}
+				#btn1{
+					display:block;
+					float: left;
+					border: none;
+					background:#FFFF99;
+					border: 1px solid #000000;
+					padding: 2px;
+					cursor: pointer;
+					
+				}
+				#btn2{
+					display:block;
+					float: right;
+					border: none;
+					background:#FFFF99;
+					border: 1px solid #000000;
+					padding: 2px;
+					cursor: pointer;
+				}
+				#btn1:hover{ opacity: 0.5;}
+				#btn2:hover{ opacity: 0.5;}
+		</style>
+		<script>
+			window.onload=function(){
+				var oUl=document.getElementById('ul1');
+				var oLi=oUl.getElementsByTagName('li');
+				var oBtn2=document.getElementById('btn2');
+				var oBtn1=document.getElementById('btn1');
+				var arr=[];
+				var str='';
+				var flag=true;
+				
+				for(var i=0; i<oLi.length; i++){
+						
+							arr.push(oLi[i]);
+							
+					};
+				
+				
+				oBtn1.onclick=function(){
+					
+						arr.reverse();
+						
+						str='';
+						
+						for(var i=0; i<oLi.length; i++){
+							
+							str+='<li>'+arr[i].innerHTML+'</li>';
+						}
+						
+						oUl.innerHTML=str;
+						
+						oBtn1.value=flag? "从小到大":"从大到小";
+						
+						flag=!flag;
+				}
+				
+				oBtn2.onclick=function(){
+					
+						var arr2=[];
+						
+						str='';
+						
+						for(var i=0; i<oLi.length; i++){
+							
+								arr2.push(oLi[i]);
+								
+						};
+						
+						arr2.sort(function(a,b){
+							
+							return Math.random()-0.5;
+						});
+						
+						for(var i=0; i<oLi.length; i++){
+								
+								str+='<li>'+arr2[i].innerHTML+'</li>';
+							}
+							
+							oUl.innerHTML=str;
+						
+					
+				}
+			
+					
+			
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div class="div1">
+			<div id="div2">
+				<input type="button" value="从小到大" id="btn1">
+				<input type="button" value="随机排序" id="btn2">
+			</div>
+			<div id="div3">
+				<ul id="ul1">
+					<li><img src="图片区/图片/taobao/1.png"><span>1</span></li>
+					<li><img src="图片区/图片/taobao/2.png"><span>2</span></li>
+					<li><img src="图片区/图片/taobao/3.png"><span>3</span></li>
+					<li><img src="图片区/图片/taobao/4.png"><span>4</span></li>
+					<li><img src="图片区/图片/taobao/5.png"><span>5</span></li>
+					<li><img src="图片区/图片/taobao/6.png"><span>6</span></li>
+					<li><img src="图片区/图片/taobao/7.png"><span>7</span></li>
+					<li><img src="图片区/图片/taobao/14.png"><span>8</span></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
