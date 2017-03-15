@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{margin: 0px; padding: 0px;}
+			#nav { width: 300px; height: 30px; border: 1px solid #333333; border-radius: 5px;}
+			#nav ul { width:300px; list-style: none; margin: 0 auto;}
+			#nav ul li { width: 50px; height: 30px; float: left;}
+			#nav ul li .narmal { font: "微软雅黑"; color: #333333; font-weight: bold;}
+			#nav ul li .float_layer {display: none; }
+		</style>
+		<script>
+			window.onload=function(){
+				
+				var aA=getByClass(document,'normal');
+				var aSpan=getByClass(document,'float_layer');
+				var timer=null;
+				
+				for(var i=0; i<aA.length; i++){
+					aA[i].index=i;
+					aA[i].onmouseover=function(){
+						
+						for(var i; i<aSapn.lenght; i++){
+							
+							aSpan[i].style.display='none';
+						}
+						aSpan[this.index].style.display='block';
+						
+						clearTimeout(timer);
+						
+					}
+					
+					aA[i].onmouseout=function(){
+						
+						var This=this;
+						
+						timer=setTimeout(function(){
+							
+							This.style.display='none';
+							
+						},1000);
+						
+					}
+					
+					aSpan[i].onmouseover=function(){
+						
+						clearTimeout(timer);
+						
+					}
+					
+					aSpan[i].onmouseout=function(){
+						
+						var This=this;
+						
+						timer=setTimeout(function(){
+							
+							This.style.display='none';
+							
+						},1000);
+						
+						
+					}
+					
+				}
+				
+				
+				
+				function getByClass(oParent,sClass){
+					var aEle=oParent.getElementsByTagName('*');
+					var result=[];
+					var re=new RegExp{"\\b" + sClass + "\\b","i"};
+					
+					for(var i=0; i<aEle.length; i++){
+						if(re.test(aEle[i].className)){
+							result.push(aEle[i]);
+							
+						}
+						
+					}
+					
+					return result;
+				}
+				
+				
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div id="nav">
+			<div class="adron1"></div>
+			<div class="adron1"></div>
+				<ul>
+					<li class="line">
+						<a class="normal" href="#"><span>首页</span></a>
+						<span class="float_layer w1 pos1">
+							<span class="arrows"></span>
+							<span class="decorate1"></span>
+							<span class="decorate2"></span>
+							<a href="#"><span>近期更新</span></a>
+							<a href="#"><span>活动</span></a>
+							<a href="#"><span>报名试听</span></a>
+							<a href="#"><span>学员反馈</span></a>
+						</span>
+					</li>
+					<li>
+						<a class="normal" href="#"><span>关于</span></a>
+						<span class="float_layer w1 pos2">
+							<span class="arrows"></span>
+							<span class="decorate1"></span>
+							<span class="decorate2"></span>
+							<a href="#"><span>近期更新</span></a>
+							<a href="#"><span>活动</span></a>
+							<a href="#"><span>报名试听</span></a>
+							<a href="#"><span>学员反馈</span></a>
+						</span>
+					</li>
+					<li>
+						<a class="normal" href="#"><span>作品</span></a>
+						<span class="float_layer w1 pos3">
+							<span class="arrows"></span>
+							<span class="decorate1"></span>
+							<span class="decorate2"></span>
+							<a href="#"><span>近期更新</span></a>
+							<a href="#"><span>活动</span></a>
+							<a href="#"><span>报名试听</span></a>
+							<a href="#"><span>学员反馈</span></a>
+						</span>
+					</li>
+					<li>
+						<a class="normal" href="#"><span>博客</span></a>
+						<span class="float_layer w1 pos4">
+							<span class="arrows"></span>
+							<span class="decorate1"></span>
+							<span class="decorate2"></span>
+							<a href="#"><span>近期更新</span></a>
+							<a href="#"><span>活动</span></a>
+							<a href="#"><span>报名试听</span></a>
+							<a href="#"><span>学员反馈</span></a>
+						</span>
+					</li>
+					<li>
+						<a class="normal" href="#"><span>更多</span></a>
+						<span class="float_layer w1 pos5">
+							<span class="arrows"></span>
+							<span class="decorate1"></span>
+							<span class="decorate2"></span>
+							<a href="#"><span>近期更新</span></a>
+							<a href="#"><span>活动</span></a>
+							<a href="#"><span>报名试听</span></a>
+							<a href="#"><span>学员反馈</span></a>
+						</span>
+					</li>
+				</ul>
+			
+		</div>
+	</body>
+</html>
